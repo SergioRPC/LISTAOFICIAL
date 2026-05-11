@@ -1,126 +1,129 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html> <!-- Define o tipo do documento HTML -->
+<html lang="pt-br"> <!-- Define idioma como português -->
 <head>
-<meta charset="UTF-8">
-<title>🎁 Lista de Casamento</title>
+<meta charset="UTF-8"> <!-- Permite acentos -->
+<title>🎁 Lista de Casamento</title> <!-- Título da aba -->
 
 <style>
 
 /* ===== ESTILO GERAL ===== */
 body {
-  font-family: Arial;
-  background: linear-gradient(135deg, #0f0f0f, #4b0082);
-  color: white;
-  margin: 0;
+  font-family: Arial; /* Fonte padrão */
+  background: linear-gradient(135deg, #0f0f0f, #4b0082); /* Fundo gradiente */
+  color: white; /* Cor do texto */
+  margin: 0; /* Remove margem padrão */
 }
 
-/* ===== BLOQUEIO ===== */
+/* ===== BLOQUEIO (LOGIN) ===== */
 #bloqueio {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #000, #4b0082);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: fixed; /* Fixa na tela */
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  background: linear-gradient(135deg, #000, #4b0082); /* Fundo */
+  display: flex; /* Flexbox */
+  flex-direction: column; /* Em coluna */
+  justify-content: center; /* Centraliza vertical */
+  align-items: center; /* Centraliza horizontal */
 }
 
-/* ANIMAÇÃO */
+/* ANIMAÇÃO DE ENTRADA */
 .fade {
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 1s ease forwards; /* Aplica animação */
 }
 
+/* KEYFRAME DA ANIMAÇÃO */
 @keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
-  to {opacity: 1; transform: scale(1);}
+  from {opacity: 0; transform: scale(0.9);} /* Começa invisível */
+  to {opacity: 1; transform: scale(1);} /* Termina visível */
 }
 
 /* INPUT */
 input {
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  margin: 10px;
-  text-align: center;
+  padding: 12px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  border: none; /* Remove borda */
+  margin: 10px; /* Espaço externo */
+  text-align: center; /* Centraliza texto */
 }
 
 /* BOTÃO */
 button {
-  background: linear-gradient(45deg, purple, violet);
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
+  background: linear-gradient(45deg, purple, violet); /* Fundo gradiente */
+  border: none; /* Sem borda */
+  padding: 10px 20px; /* Espaçamento */
+  color: white; /* Cor do texto */
+  border-radius: 6px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de clique */
+  transition: 0.3s; /* Animação suave */
 }
 
+/* EFEITO HOVER DO BOTÃO */
 button:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Aumenta levemente */
 }
 
-/* WHATS */
+/* LINK WHATSAPP */
 .whats {
-  color: #25D366;
-  margin-top: 15px;
-  text-decoration: none;
-  font-weight: bold;
+  color: #25D366; /* Verde WhatsApp */
+  margin-top: 15px; /* Espaço acima */
+  text-decoration: none; /* Remove sublinhado */
+  font-weight: bold; /* Negrito */
 }
 
-/* ===== CONTEÚDO ===== */
+/* ===== CONTEÚDO PRINCIPAL ===== */
 #conteudo {
-  display: none;
-  padding: 20px;
+  display: none; /* Começa escondido */
+  padding: 20px; /* Espaçamento interno */
 }
 
-/* CONTAINER */
+/* CONTAINER CENTRAL */
 .container {
-  max-width: 900px;
-  margin: auto;
+  max-width: 900px; /* Largura máxima */
+  margin: auto; /* Centraliza */
 }
 
-/* ITEM */
+/* ITEM (CADA PRODUTO) */
 .item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 12px;
+  display: flex; /* Layout lado a lado */
+  align-items: center; /* Alinha vertical */
+  gap: 20px; /* Espaço entre itens */
+  background: rgba(255,255,255,0.08); /* Fundo transparente */
+  padding: 20px; /* Espaço interno */
+  margin: 15px 0; /* Espaço entre itens */
+  border-radius: 12px; /* Bordas arredondadas */
 }
 
-/* IMAGEM */
+/* IMAGEM DO PRODUTO */
 .produto {
-  width: 120px;
-  height: 120px;
-  object-fit: contain; /* 🔥 ALTERAÇÃO AQUI */
-  transition: 0.4s;
-  cursor: pointer;
+  width: 120px; /* Largura */
+  height: 120px; /* Altura */
+  object-fit: contain; /* Ajusta imagem sem cortar */
+  transition: 0.4s; /* Animação */
+  cursor: pointer; /* Cursor */
 }
 
+/* ZOOM AO PASSAR MOUSE */
 .produto:hover {
-  transform: scale(2.5);
+  transform: scale(2.5); /* Aumenta imagem */
 }
 
 /* TEXTO */
 .info {
-  text-align: left;
+  text-align: left; /* Alinha texto */
 }
 
 /* BOTÃO COMPRADO */
 .comprado {
-  background: green !important;
+  background: green !important; /* Cor verde */
 }
 
-/* ===== CURSOR ANIMADO ===== */
+/* CURSOR PERSONALIZADO */
 #cursor {
-  position: fixed;
-  width: 40px;
-  pointer-events: none;
-  z-index: 999;
-  display: none;
+  position: fixed; /* Fixo na tela */
+  width: 40px; /* Tamanho */
+  pointer-events: none; /* Não interfere no clique */
+  z-index: 999; /* Fica na frente */
+  display: none; /* Começa escondido */
 }
 
 </style>
@@ -128,16 +131,17 @@ button:hover {
 
 <body>
 
-<!-- 🔒 LOGIN -->
+<!-- 🔒 TELA DE LOGIN -->
 <div id="bloqueio" class="fade">
 
-  <h1>🔒 Acesso à Lista</h1>
-  <p>Solicite seu código no WhatsApp</p>
+  <h1>🔒 Acesso à Lista</h1> <!-- Título -->
+  <p>Solicite seu código no WhatsApp</p> <!-- Texto -->
 
-  <input id="codigo" placeholder="Digite seu código">
+  <input id="codigo" placeholder="Digite seu código"> <!-- Campo de código -->
 
-  <button onclick="validar()">Entrar</button>
+  <button onclick="validar()">Entrar</button> <!-- Botão de login -->
 
+  <!-- Link para WhatsApp -->
   <a class="whats"
      href="https://wa.me/5511989163463?text=Olá,%20quero%20o%20código%20da%20lista%20de%20casamento"
      target="_blank">
@@ -146,80 +150,39 @@ button:hover {
 
 </div>
 
-<!-- 🛍️ SITE -->
+<!-- 🛍️ CONTEÚDO PRINCIPAL -->
 <div id="conteudo">
 
   <h1>🎁 Lista de Casamento</h1>
 
   <div class="container">
 
-    <!-- GELADEIRA -->
+    <!-- 💰 ITEM PIX -->
     <div class="item">
-      <img src="Geladeira/G INOX 1.png" class="produto">
-      <img src="Geladeira/G INOX 2.png" class="produto">
 
-      <div class="info">
-        <strong>Geladeira Duplex Inox</strong><br><br>
-
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
-    <!-- FOGÃO -->
-    <div class="item">
-     <img src="Fogao/fogao1.png" class="produto">
-     <img src="Fogao/fogao2.png" class="produto">
-
-      <div class="info">
-        <strong>Fogão 4 Bocas mesa vidro inox/preto</strong><br><br>
-
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
- <!-- SOFA -->
-    <div class="item">
-      <img src="Sofa/sofa1.png" class="produto">
-      <img src="Sofa/sofa2.png" class="produto">
-
-      <div class="info">
-        <strong>Sofá Retrátil e Reclinável Preto-cinza-grafite</strong><br><br>
-
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-
-    <!-- MESA -->
-    <div class="item">
-     <img src="Mesa/mesa1.png" class="produto">
-     <img src="Mesa/mesa2.png" class="produto">
-
-      <div class="info">
-        <strong>Mesa Madeira</strong><br><br>
-
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
-    <!-- PIX -->
-    <div class="item">
+      <!-- Imagens decorativas -->
       <img src="Pix/Pix1.png" class="produto">
       <img src="Pix/Pix2.png" class="produto">
 
       <div class="info">
-        <strong>Pix</strong><br><br>
 
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
+        <strong>Presente via Pix 💍</strong><br><br>
 
-        <button onclick="marcar(this)">Disponível</button>
+        <!-- Campo para digitar valor -->
+        <input type="number" id="valorPix" placeholder="Digite o valor (R$)" style="width:150px;"><br><br>
+
+        <!-- Botão gerar QR -->
+        <button onclick="gerarPix()">Gerar Pix</button><br><br>
+
+        <!-- QR Code (começa escondido) -->
+        <img id="qrcodePix" style="display:none; width:150px;"><br><br>
+
+        <!-- Botão copiar chave -->
+        <button onclick="copiarPix()">Copiar chave Pix</button><br><br>
+
+        <!-- Exibe chave -->
+        <small>Chave: ladym2393@gmail.com</small>
+
       </div>
     </div>
 
@@ -232,61 +195,84 @@ button:hover {
 
 <script>
 
-/* ===== CÓDIGOS ===== */
+/* LISTA DE CÓDIGOS DE ACESSO */
 const codigos = {
   "joao": "1234",
   "maria": "5678",
   "carlos": "9999"
 };
 
-/* ===== LOGIN ===== */
+/* FUNÇÃO DE LOGIN */
 function validar() {
-  let input = document.getElementById("codigo").value.trim();
-  let autorizado = false;
 
+  let input = document.getElementById("codigo").value.trim(); // Pega código digitado
+  let autorizado = false; // Começa falso
+
+  // Percorre lista de códigos
   for (let pessoa in codigos) {
     if (codigos[pessoa] === input) {
-      autorizado = true;
+      autorizado = true; // Se encontrar, libera
       break;
     }
   }
 
+  // Se autorizado
   if (autorizado) {
-    document.getElementById("bloqueio").style.display = "none";
-    document.getElementById("conteudo").style.display = "block";
+    document.getElementById("bloqueio").style.display = "none"; // Esconde login
+    document.getElementById("conteudo").style.display = "block"; // Mostra site
   } else {
-    alert("Código inválido!");
+    alert("Código inválido!"); // Erro
   }
 }
 
-/* ===== BOTÃO ===== */
-function marcar(btn) {
-  if (btn.innerText === "Disponível") {
-    btn.innerText = "Comprado";
-    btn.classList.add("comprado");
-  } else {
-    btn.innerText = "Disponível";
-    btn.classList.remove("comprado");
+/* FUNÇÃO GERAR PIX */
+function gerarPix() {
+
+  let valor = document.getElementById("valorPix").value; // Pega valor
+
+  if (!valor || valor <= 0) {
+    alert("Digite um valor válido!"); // Validação
+    return;
   }
+
+  let chave = "ladym2393@gmail.com"; // Sua chave Pix
+
+  // Payload simples (simulação)
+  let payload = `PIX|${chave}|${valor}`;
+
+  // Gera QR usando API
+  let url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(payload);
+
+  let img = document.getElementById("qrcodePix"); // Seleciona imagem
+  img.src = url; // Define QR
+  img.style.display = "block"; // Mostra QR
 }
 
-/* ===== CURSOR SEGUINDO O MOUSE ===== */
+/* COPIAR CHAVE PIX */
+function copiarPix() {
+  let chave = "ladym2393@gmail.com"; // Define chave
+  navigator.clipboard.writeText(chave); // Copia
+  alert("Chave Pix copiada!"); // Aviso
+}
+
+/* CURSOR PERSONALIZADO */
 const cursor = document.getElementById("cursor");
 
+/* SEGUE O MOUSE */
 document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.pageX + "px";
-  cursor.style.top = e.pageY + "px";
+  cursor.style.left = e.pageX + "px"; // Move eixo X
+  cursor.style.top = e.pageY + "px"; // Move eixo Y
 });
 
-/* MOSTRAR SÓ EM ELEMENTOS CLICÁVEIS */
+/* MOSTRAR CURSOR EM ELEMENTOS CLICÁVEIS */
 document.querySelectorAll("a, button, img").forEach(el => {
 
   el.addEventListener("mouseenter", () => {
-    cursor.style.display = "block";
+    cursor.style.display = "block"; // Mostra cursor
   });
 
   el.addEventListener("mouseleave", () => {
-    cursor.style.display = "none";
+    cursor.style.display = "none"; // Esconde cursor
   });
 
 });
