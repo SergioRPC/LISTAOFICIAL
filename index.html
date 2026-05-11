@@ -408,6 +408,7 @@ let codigoPix = payload + crc;
 
   // SALVAR PARA COPIAR
   window.codigoPixGerado = codigoPix;
+  }
 
  const codigos = ["1234","5678","9999"];
 
@@ -429,7 +430,6 @@ function marcar(btn) {
 }
 
 function copiarPix() {
- function copiarPix() {
   if (!window.codigoPixGerado) {
     alert("Gere o Pix primeiro!");
     return;
@@ -459,6 +459,7 @@ document.querySelectorAll("a, button, img").forEach(el => {
   el.addEventListener("mouseenter", () => cursor.style.display = "block");
   el.addEventListener("mouseleave", () => cursor.style.display = "none");
 });
+  }
   </script>
 
 </body>
