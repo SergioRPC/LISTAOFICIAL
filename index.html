@@ -383,34 +383,33 @@ function gerarPix() {
   }
 
   // MONTA PIX DINÂMICO
-  let payload =
-    "000201" +
-    "26410014BR.GOV.BCB.PIX0119ladym2393@gmail.com" +
-    "52040000" +
-    "5303986" +
-    "54" + valor.length.toString().padStart(2, '0') + valor +
-    "5802BR" +
-    "5908PRESENTE" +
-    "6006BRASIL" +
-    "62070503***" +
-    "6304";
+// FORMATA VALOR (ex: 10.00)
+valor = parseFloat(valor).toFixed(2);
 
-  let crc = crc16(payload);
-  let codigoPix = payload + crc;
+// BASE DA SUA CHAVE (SEM VALOR)
+let base =
+  "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com52040000530398654";
+
+// TAMANHO DO VALOR (PIX EXIGE ISSO)
+let tamanho = valor.length.toString().padStart(2, '0');
+
+// RESTO FIXO
+let resto =
+  "5802BR5908PRESENTE6006BRASIL62070503***6304";
+
+// MONTA PIX COMPLETO
+let payload = base + tamanho + valor + resto;
+
+// CRC (OBRIGATÓRIO)
+let crc = crc16(payload);
+
+// CÓDIGO FINAL
+let codigoPix = payload + crc;
 
   // SALVAR PARA COPIAR
   window.codigoPixGerado = codigoPix;
 
-  // GERAR QR CODE
-  let img = document.getElementById("qrcode");
-  img.src =
-    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-    encodeURIComponent(codigoPix);
-
-  img.style.display = "block";
-}
-
-const codigos = ["1234","5678","9999"];
+ const codigos = ["1234","5678","9999"];
 
 function validar() {
   let input = document.getElementById("codigo").value.trim();
@@ -431,6 +430,7 @@ function marcar(btn) {
 }
 
 function copiarPix() {
+ function copiarPix() {
   if (!window.codigoPixGerado) {
     alert("Gere o Pix primeiro!");
     return;
@@ -448,7 +448,6 @@ function copiarPix() {
     check.style.display = "none";
   }, 2000);
 }
-
 // CURSOR
 const cursor = document.getElementById("cursor");
 
