@@ -2,116 +2,23 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+
 <!-- Fonte elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
-<h1 class="titulo-casamento">
-  Um presente seu, uma memória pra sempre📦
-</h1>
-
+<title>🎁 Lista de Casamento</title>
 
 <style>
-  .titulo-casamento {
-  font-size: 48px;
-  white-space: normal; /* permite quebrar linha */
-  .titulo-casamento {
-  font-family: 'Great Vibes', cursive;
-  font-size: 48px;
-  text-align: center;
-  color: #d8b4ff; /* roxo mais sofisticado */
-  margin-top: 30px;
-  margin-bottom: 30px;
-  position: relative;
 
-  /* animação entrada */
-  opacity: 0;
-  animation: fadeElegante 2s ease forwards;
-
-  /* leve brilho base */
-  text-shadow: 0 0 5px #a855f7, 0 0 10px #6a0dad;
-}
-
-/* brilho passando */
-.titulo-casamento::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.8),
-    transparent
-  );
-
-  animation: brilhoLuxo 3s infinite;
-}
-
-/* animação de entrada */
-@keyframes fadeElegante {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* animação do brilho */
-@keyframes brilhoLuxo {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-.titulo-casamento {
-  font-family: 'Great Vibes', cursive;
-  font-size: 48px;
-  text-align: center;
-  color: #6a0dad;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-shadow: 1px 1px 2px black;
-
-  /* ANIMAÇÃO */
-  opacity: 0;
-  animation: fadeElegante 2s ease forwards;
-}
-
-/* efeito fade + leve subida */
-@keyframes fadeElegante {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* fundo opcional */
+/* ===== FUNDO DO SITE ===== */
 body {
-  background: linear-gradient(135deg, #2b0033, #000000);
-}
-  body {
+  font-family: Arial;
   background: linear-gradient(135deg, #1a001f, #000000);
+  color: white;
+  margin: 0;
 }
-  @media (max-width: 600px) {
-  .titulo-casamento {
-    font-size: 42px !important; /* tamanho fixo */
-    line-height: 1.2;
-    transform: none !important; /* evita “pular” */
-  }
-}
-    /* TÍTULO PRINCIPAL */
+
+/* ===== TÍTULO COM ANIMAÇÃO E BRILHO ===== */
 .titulo-casamento {
   font-family: 'Great Vibes', cursive;
   font-size: 48px;
@@ -125,7 +32,6 @@ body {
 
   text-shadow: 0 0 5px #a855f7, 0 0 10px #6a0dad;
 
-  /* animação entrada */
   opacity: 0;
   animation: fadeElegante 2s ease forwards;
 }
@@ -138,56 +44,32 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.8),
-    transparent
-  );
-
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
   animation: brilhoLuxo 3s infinite;
 }
 
 /* animação entrada */
 @keyframes fadeElegante {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* brilho */
+/* animação brilho */
 @keyframes brilhoLuxo {
   0% { left: -100%; }
   100% { left: 100%; }
 }
 
-/* 📱 MOBILE (SEM DIMINUIR) */
+/* MOBILE (mantém tamanho) */
 @media (max-width: 600px) {
   .titulo-casamento {
-    font-size: 42px !important; /* mantém grande */
+    font-size: 42px !important;
     line-height: 1.3;
     padding: 0 10px;
   }
 }
-</style>
 
-<style>
-
-/* ===== ESTILO GERAL ===== */
-body {
-  font-family: Arial;
-  background: linear-gradient(135deg, #0f0f0f, #4b0082);
-  color: white;
-  margin: 0;
-}
-
-/* ===== BLOQUEIO ===== */
+/* ===== BLOQUEIO LOGIN ===== */
 #bloqueio {
   position: fixed;
   width: 100%;
@@ -199,7 +81,7 @@ body {
   align-items: center;
 }
 
-/* ANIMAÇÃO */
+/* animação login */
 .fade {
   animation: fadeIn 1s ease forwards;
 }
@@ -209,7 +91,7 @@ body {
   to {opacity: 1; transform: scale(1);}
 }
 
-/* INPUT */
+/* input */
 input {
   padding: 12px;
   border-radius: 8px;
@@ -218,7 +100,7 @@ input {
   text-align: center;
 }
 
-/* BOTÃO */
+/* botão */
 button {
   background: linear-gradient(45deg, purple, violet);
   border: none;
@@ -233,7 +115,7 @@ button:hover {
   transform: scale(1.1);
 }
 
-/* WHATS */
+/* whatsapp */
 .whats {
   color: #25D366;
   margin-top: 15px;
@@ -247,13 +129,13 @@ button:hover {
   padding: 20px;
 }
 
-/* CONTAINER */
+/* container */
 .container {
   max-width: 900px;
   margin: auto;
 }
 
-/* ITEM */
+/* itens */
 .item {
   display: flex;
   align-items: center;
@@ -264,7 +146,7 @@ button:hover {
   border-radius: 12px;
 }
 
-/* IMAGEM */
+/* imagens */
 .produto {
   width: 120px;
   height: 120px;
@@ -277,17 +159,17 @@ button:hover {
   transform: scale(2.5);
 }
 
-/* TEXTO */
+/* texto */
 .info {
   text-align: left;
 }
 
-/* BOTÃO COMPRADO */
+/* botão comprado */
 .comprado {
   background: green !important;
 }
 
-/* ===== CURSOR ANIMADO ===== */
+/* cursor animado */
 #cursor {
   position: fixed;
   width: 40px;
@@ -303,12 +185,10 @@ button:hover {
 
 <!-- 🔒 LOGIN -->
 <div id="bloqueio" class="fade">
-
   <h1>🔒 Acesso à Lista</h1>
   <p>Solicite seu código no WhatsApp</p>
 
   <input id="codigo" placeholder="Digite seu código">
-
   <button onclick="validar()">Entrar</button>
 
   <a class="whats"
@@ -316,85 +196,54 @@ button:hover {
      target="_blank">
      📲 Pedir código no WhatsApp
   </a>
-
 </div>
 
 <!-- 🛍️ SITE -->
 <div id="conteudo">
 
-  <h1>🎁 Nossas sugestões de presentes</h1>
+  <!-- TÍTULO CORRETO -->
+  <h1 class="titulo-casamento">
+    Um presente seu, uma memória pra sempre📦
+  </h1>
 
   <div class="container">
 
-    <!-- GELADEIRA -->
+    <!-- EXEMPLO ITEM -->
     <div class="item">
       <img src="Geladeira/G INOX 1.png" class="produto">
       <img src="Geladeira/G INOX 2.png" class="produto">
-
       <div class="info">
         <strong>Geladeira Duplex Inox</strong><br><br>
         <button onclick="marcar(this)">Disponível</button>
       </div>
     </div>
-    
-    <!-- FOGÃO -->
+
+    <!-- PIX -->
     <div class="item">
-     <img src="Fogao/fogao1.png" class="produto">
-     <img src="Fogao/fogao2.png" class="produto">
+      <img src="Pix/Pix1.png" class="produto">
+      <img src="Pix/Pix2.png" class="produto">
 
       <div class="info">
-        <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong><br><br>
-       <button onclick="marcar(this)">Disponível</button>
+        <strong>Pix</strong><br><br>
+
+        <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
+
+        <button onclick="gerarPix()">Gerar Pix</button><br><br>
+
+        <img id="qrcode" style="display:none; width:200px;"><br><br>
+
+        <button onclick="copiarPix()">Copiar código Pix</button>
       </div>
     </div>
-    
-    <!-- SOFA -->
-    <div class="item">
-      <img src="Sofa/sofa1.png" class="produto">
-      <img src="Sofa/sofa2.png" class="produto">
-
-      <div class="info">
-        <strong>Sofá Retrátil e Reclinável</strong><br><br>
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-
-    <!-- MESA -->
-    <div class="item">
-     <img src="Mesa/mesa1.png" class="produto">
-     <img src="Mesa/mesa2.png" class="produto">
-
-      <div class="info">
-        <strong>Mesa Madeira</strong><br><br>
-       <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
-<!-- PIX -->
-<div class="item">
-  <img src="Pix/Pix1.png" class="produto">
-  <img src="Pix/Pix2.png" class="produto">
-
-  <div class="info">
-    <strong>Pix</strong><br><br>
-
-    <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
-
-    <button onclick="gerarPix()">Gerar Pix</button><br><br>
-
-    <img id="qrcode" style="display:none; width:200px;"><br><br>
-
-    <button onclick="copiarPix()">Copiar código Pix</button>
-  </div>
-</div>
 
   </div>
-
 </div>
 
 <img src="Mouse/Aliancas move.gif" id="cursor">
 
 <script>
+
+/* ===== GERAR QR CODE FIXO ===== */
 function gerarPix() {
   let valor = document.getElementById("valorPix").value;
 
@@ -407,6 +256,7 @@ function gerarPix() {
   img.src = "Qrcode/qrcode-pix.png";
   img.style.display = "block";
 }
+
 /* ===== LOGIN ===== */
 const codigos = ["1234","5678","9999"];
 
@@ -421,65 +271,19 @@ function validar() {
   }
 }
 
-/* ===== BOTÃO ===== */
+/* ===== BOTÃO COMPRADO ===== */
 function marcar(btn) {
   btn.classList.toggle("comprado");
   btn.innerText = btn.classList.contains("comprado") ? "Comprado" : "Disponível";
 }
 
-/* ===== PIX ===== */
-function format(id, value) {
-  let size = value.length.toString().padStart(2, "0");
-  return id + size + value;
-}
-
-function crc16(str) {
-  let crc = 0xFFFF;
-  for (let i = 0; i < str.length; i++) {
-    crc ^= str.charCodeAt(i) << 8;
-    for (let j = 0; j < 8; j++) {
-      crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
-    }
-  }
-  return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
-}
-
-function gerarPayloadPix(valor) {
-  let chave = "ladym2393@gmail.com";
-
-  let payload =
-    "000201" +
-    format("26", format("00","BR.GOV.BCB.PIX") + format("01",chave)) +
-    "52040000" +
-    "5303986" +
-    format("54", parseFloat(valor).toFixed(2)) +
-    "5802BR" +
-    format("59","PRESENTE") +
-    format("60","BRASIL") +
-    "62070503***";
-
-  payload += "6304" + crc16(payload + "6304");
-
-  return payload;
-}
-
-function gerarLinkPix() {
-  let valor = document.getElementById("valorPix").value;
-  if (!valor || valor <= 0) return alert("Digite um valor válido!");
-
-  let payload = gerarPayloadPix(valor);
-
-  let a = document.getElementById("linkPix");
-  a.href = "pix://" + payload;
-  a.style.display = "inline";
-}
-
+/* ===== COPIAR PIX ===== */
 function copiarPix() {
   let valor = document.getElementById("valorPix").value;
   if (!valor || valor <= 0) return alert("Digite um valor válido!");
 
-  navigator.clipboard.writeText(gerarPayloadPix(valor));
-  alert("Código Pix válido copiado!");
+  navigator.clipboard.writeText("Chave PIX: ladym2393@gmail.com");
+  alert("Chave Pix copiada!");
 }
 
 /* ===== CURSOR ===== */
