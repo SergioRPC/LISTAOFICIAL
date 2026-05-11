@@ -277,6 +277,63 @@ function marcar(btn) {
 }
 
 /* ===== PIX ===== */
+<script>
+
+/* ===== PIX ===== */
+
+// Função para formatar campos Pix
+function format(id, value) {
+  let size = value.length.toString().padStart(2, "0");
+  return id + size + value;
+}
+
+// Função para calcular CRC16 (obrigatório no Pix)
+function crc16(str) {
+  let crc = 0xFFFF;
+
+  for (let i = 0; i < str.length; i++) {
+    crc ^= str.charCodeAt(i) << 8;
+
+    for (let j = 0; j < 8; j++) {
+      if ((crc & 0x8000) !== 0) {
+        crc = (crc << 1) ^ 0x1021;
+      } else {
+        crc = crc << 1;
+      }
+    }
+  }
+
+  return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+}
+
+// Função principal que gera o código Pix válido
+function gerarPayloadPix(valor) {
+
+  let chave = "ladym2393@gmail.com";
+  let nome = "PRESENTE";
+  let cidade = "BRASIL";
+
+  let payload =
+    "000201" +
+    format("26",
+      format("00", "BR.GOV.BCB.PIX") +
+      format("01", chave)
+    ) +
+    "52040000" +
+    "5303986" +
+    format("54", parseFloat(valor).toFixed(2)) +
+    "5802BR" +
+    format("59", nome) +
+    format("60", cidade) +
+    "62070503***";
+
+  // Adiciona CRC final
+  payload += "6304" + crc16(payload + "6304");
+
+  return payload;
+}
+
+// Gera link clicável
 function gerarLinkPix() {
   let valor = document.getElementById("valorPix").value;
 
@@ -285,8 +342,7 @@ function gerarLinkPix() {
     return;
   }
 
-  let chave = "ladym2393@gmail.com";
-  let payload = `00020126580014BR.GOV.BCB.PIX0136${chave}52040000530398654${valor}5802BR5913Presente6006BRASIL62070503***6304`;
+  let payload = gerarPayloadPix(valor);
 
   let link = "pix://" + payload;
 
@@ -295,13 +351,22 @@ function gerarLinkPix() {
   a.style.display = "inline";
 }
 
+// Copiar código Pix válido
 function copiarPix() {
   let valor = document.getElementById("valorPix").value;
-  let payload = `00020126580014BR.GOV.BCB.PIX0136ladym2393@gmail.com52040000530398654${valor}5802BR5913Presente6006BRASIL62070503***6304`;
+
+  if (!valor || valor <= 0) {
+    alert("Digite um valor válido!");
+    return;
+  }
+
+  let payload = gerarPayloadPix(valor);
 
   navigator.clipboard.writeText(payload);
-  alert("Código Pix copiado!");
+  alert("Código Pix válido copiado!");
 }
+
+</script>
 
 /* ===== CURSOR ===== */
 const cursor = document.getElementById("cursor");
