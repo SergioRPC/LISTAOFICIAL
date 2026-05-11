@@ -14,6 +14,7 @@ body {
   margin: 0;
 }
 
+/* BLOQUEIO */
 #bloqueio {
   position: fixed;
   width: 100%;
@@ -23,11 +24,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-#conteudo {
-  display: none;
-  padding: 20px;
 }
 
 input {
@@ -47,31 +43,46 @@ button {
   cursor: pointer;
 }
 
+#conteudo {
+  display: none;
+  padding: 20px;
+}
+
 .container {
   max-width: 900px;
   margin: auto;
 }
 
 .item {
+  display: flex;
+  gap: 20px;
   background: rgba(255,255,255,0.08);
   padding: 20px;
   margin: 15px 0;
   border-radius: 12px;
-  text-align: center;
 }
 
 .produto {
   width: 120px;
+  height: 120px;
 }
 
 .comprado {
   background: green !important;
 }
 
+/* CHECK */
 #checkPix {
   display: none;
-  color: #00ff88;
-  font-weight: bold;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: 0.3s;
+}
+
+#checkPix.mostrar {
+  display: inline-block;
+  opacity: 1;
+  transform: scale(1.2);
 }
 </style>
 </head>
@@ -80,32 +91,37 @@ button {
 
 <div id="bloqueio">
   <h1>🔒 Acesso</h1>
-  <input id="codigo" placeholder="Digite o código">
+  <input id="codigo" placeholder="Código">
   <button onclick="validar()">Entrar</button>
 </div>
 
 <div id="conteudo">
 
-  <h1 style="text-align:center;">Lista de Casamento 🎁</h1>
+<h1 style="text-align:center;font-family:'Great Vibes';font-size:40px;">
+Um presente seu 🎁
+</h1>
 
-  <div class="container">
+<div class="container">
 
-    <div class="item">
-      <strong>Pix</strong><br><br>
+<div class="item">
+  <img src="Pix/Pix1.png" class="produto">
 
-      <input type="number" id="valorPix" placeholder="Digite o valor"><br><br>
+  <div>
+    <strong>Pix</strong><br><br>
 
-      <button onclick="gerarPix()">Gerar Pix</button><br><br>
+    <input type="number" id="valorPix" placeholder="Digite o valor"><br><br>
 
-      <img id="qrcode" style="display:none; width:250px;"><br><br>
+    <button onclick="gerarPix()">Gerar Pix</button><br><br>
 
-      <button onclick="copiarPix()">Copiar código Pix</button><br>
+    <img id="qrcode" style="display:none; width:250px;"><br><br>
 
-      <span id="checkPix">✔ Copiado!</span>
-    </div>
+    <button onclick="copiarPix()">Copiar código Pix</button>
 
+    <span id="checkPix">✔ Copiado!</span>
   </div>
+</div>
 
+</div>
 </div>
 
 <script>
@@ -114,7 +130,7 @@ button {
 const codigos = ["1234","5678","9999"];
 
 function validar() {
-  let input = document.getElementById("codigo").value.trim();
+  let input = document.getElementById("codigo").value;
 
   if (codigos.includes(input)) {
     document.getElementById("bloqueio").style.display = "none";
@@ -124,12 +140,21 @@ function validar() {
   }
 }
 
+// MARCAR ITEM
+function marcar(btn) {
+  btn.classList.toggle("comprado");
+  btn.innerText = btn.classList.contains("comprado")
+    ? "Comprado"
+    : "Disponível";
+}
+
 // GERAR PIX
 function gerarPix() {
+
   let valor = document.getElementById("valorPix").value;
 
   if (!valor || valor <= 0) {
-    alert("Digite um valor!");
+    alert("Digite um valor válido!");
     return;
   }
 
@@ -137,12 +162,15 @@ function gerarPix() {
 
   function crc16(str) {
     let crc = 0xFFFF;
+
     for (let i = 0; i < str.length; i++) {
       crc ^= str.charCodeAt(i) << 8;
+
       for (let j = 0; j < 8; j++) {
         crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
       }
     }
+
     crc &= 0xFFFF;
     return crc.toString(16).toUpperCase().padStart(4, '0');
   }
@@ -153,17 +181,20 @@ function gerarPix() {
 
   let payload = base + tamanho + valor + resto;
   let crc = crc16(payload);
+
   let codigoPix = payload + crc;
 
   window.codigoPixGerado = codigoPix;
 
-  let img = document.getElementById("qrcode");
-  img.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(codigoPix);
-  img.style.display = "block";
+  // QR CODE
+  let qr = document.getElementById("qrcode");
+  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + codigoPix;
+  qr.style.display = "block";
 }
 
 // COPIAR PIX
 function copiarPix() {
+
   if (!window.codigoPixGerado) {
     alert("Gere o Pix primeiro!");
     return;
@@ -172,10 +203,11 @@ function copiarPix() {
   navigator.clipboard.writeText(window.codigoPixGerado);
 
   let check = document.getElementById("checkPix");
-  check.style.display = "inline";
+
+  check.classList.add("mostrar");
 
   setTimeout(() => {
-    check.style.display = "none";
+    check.classList.remove("mostrar");
   }, 2000);
 }
 
