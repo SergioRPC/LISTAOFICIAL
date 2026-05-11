@@ -385,7 +385,26 @@ function marcar(btn) {
 
 function copiarPix() {
   let valor = document.getElementById("valorPix").value;
-  if (!valor || valor <= 0) return alert("Digite um valor válido!");
+
+  if (!valor || valor <= 0) {
+    alert("Digite um valor válido!");
+    return;
+  }
+
+  const codigoPix = "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com520400005303986540510.005802BR5908PRESENTE6006BRASIL62070503***6304CAE6";
+
+  navigator.clipboard.writeText(codigoPix);
+
+  let check = document.getElementById("checkPix");
+
+  check.style.display = "inline-block";
+  check.classList.add("mostrar");
+
+  setTimeout(() => {
+    check.classList.remove("mostrar");
+    check.style.display = "none";
+  }, 2000);
+}
 
   navigator.clipboard.writeText("PIX GERADO");
 
