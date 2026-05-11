@@ -358,29 +358,7 @@ document.querySelectorAll("a, button, img").forEach(el => {
   el.addEventListener("mouseenter", () => cursor.style.display = "block");
   el.addEventListener("mouseleave", () => cursor.style.display = "none");
 });
-  /* ===== BOTÃO ESTILO NUBANK ===== */
-button {
-  transition: all 0.15s ease;
-  box-shadow: 0 6px 0 rgba(0,0,0,0.3);
-}
-
-/* EFEITO AO CLICAR */
-button:active {
-  transform: translateY(4px) scale(0.97);
-  box-shadow: 0 2px 0 rgba(0,0,0,0.4);
-}
-
-/* TOQUE MOBILE MAIS SUAVE */
-button:focus {
-  outline: none;
-}
-
-/* FEEDBACK VISUAL EXTRA */
-button:active {
-  filter: brightness(0.9);
-}
-  });
-</script>
+ </script>
 
 </body>
 </html>
