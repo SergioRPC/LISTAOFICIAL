@@ -1,12 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+#bloqueio {
+  font-size: 22px;
+}
+
+#bloqueio input {
+  font-size: 18px;
+  width: 80%;
+  max-width: 300px;
+}
+
+#bloqueio button {
+  font-size: 18px;
+  padding: 12px 25px;
+}
+/* ===== TÍTULO (SEM BRILHO) ===== */
+.titulo-casamento {
+  font-family: 'Great Vibes', cursive;
+  font-size: 48px;
+  text-align: center;
+  color: #d8b4ff;
+  margin: 30px 15px;
+  position: relative;
+
+  white-space: normal;
+  word-break: break-word;
+
+  text-shadow: 0 0 5px #a855f7, 0 0 15px #6a0dad;
+
+  opacity: 0;
+  animation: fadeElegante 1.5s ease forwards;
+}
+
+/* 🔴 REMOVIDO O BRILHO */
+.titulo-casamento::after {
+  display: none;
+}
+
+/* animação */
+@keyframes fadeElegante {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .titulo-casamento {
+    font-size: 42px !important;
+    line-height: 1.3;
+  }
+}
+@media (max-width: 600px) {
+
+  /* itens mais organizados */
+  .item {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  /* imagens menores (melhor leitura) */
+  .produto {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* texto mais legível */
+  .info {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  /* botão melhor no dedo */
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+}
+</style>
+
+<style>
+
+/* ===== ESTILO GERAL ===== */
 body {
   font-family: Arial;
   background: linear-gradient(135deg, #0f0f0f, #4b0082);
@@ -14,6 +98,7 @@ body {
   margin: 0;
 }
 
+/* ===== BLOQUEIO ===== */
 #bloqueio {
   position: fixed;
   width: 100%;
@@ -25,6 +110,17 @@ body {
   align-items: center;
 }
 
+/* ANIMAÇÃO */
+.fade {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+/* INPUT */
 input {
   padding: 12px;
   border-radius: 8px;
@@ -33,6 +129,7 @@ input {
   text-align: center;
 }
 
+/* BOTÃO */
 button {
   background: linear-gradient(45deg, purple, violet);
   border: none;
@@ -40,20 +137,37 @@ button {
   color: white;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
+button:hover {
+  transform: scale(1.1);
+}
+
+/* WHATS */
+.whats {
+  color: #25D366;
+  margin-top: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ===== CONTEÚDO ===== */
 #conteudo {
   display: none;
   padding: 20px;
 }
 
+/* CONTAINER */
 .container {
   max-width: 900px;
   margin: auto;
 }
 
+/* ITEM */
 .item {
   display: flex;
+  align-items: center;
   gap: 20px;
   background: rgba(255,255,255,0.08);
   padding: 20px;
@@ -61,16 +175,69 @@ button {
   border-radius: 12px;
 }
 
+/* IMAGEM */
 .produto {
   width: 120px;
   height: 120px;
+  object-fit: contain;
+  transition: 0.4s;
+  cursor: pointer;
 }
 
-#checkPix {
+.produto:hover {
+  transform: scale(2.5);
+}
+
+/* TEXTO */
+.info {
+  text-align: left;
+}
+
+/* BOTÃO COMPRADO */
+.comprado {
+  background: green !important;
+}
+
+/* ===== CURSOR ANIMADO ===== */
+#cursor {
+  position: fixed;
+  width: 40px;
+  pointer-events: none;
+  z-index: 999;
   display: none;
+}
+/* ===== BOTÃO ESTILO NUBANK ===== */
+button {
+  transition: all 0.15s ease;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+}
+
+/* EFEITO AO CLICAR */
+button:active {
+  transform: translateY(4px) scale(0.97);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+}
+
+/* TOQUE MOBILE MAIS SUAVE */
+button:focus {
+  outline: none;
+}
+
+/* FEEDBACK VISUAL EXTRA */
+button:active {
+  filter: brightness(0.9);
+}
+  /* CHECK ANIMADO */
+#checkPix {
   opacity: 0;
   transform: scale(0.8);
-  transition: 0.3s;
+  transition: all 0.3s ease;
+}
+
+#checkPix.mostrar {
+  display: inline-block !important;
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 #checkPix.mostrar {
@@ -83,63 +250,109 @@ button {
 
 <body>
 
-<!-- LOGIN -->
-<div id="bloqueio">
+<!-- 🔒 LOGIN -->
+<div id="bloqueio" class="fade">
+
   <h1>🔒 Acesso à Lista</h1>
+  <p>Solicite seu código no WhatsApp</p>
+
   <input id="codigo" placeholder="Digite seu código">
+
   <button onclick="validar()">Entrar</button>
+
+  <a class="whats"
+     href="https://wa.me/5511989163463?text=Olá,%20quero%20o%20código%20da%20lista%20de%20casamento"
+     target="_blank">
+     📲 Pedir código no WhatsApp
+  </a>
+
 </div>
 
-<!-- CONTEÚDO -->
+<!-- 🛍️ SITE -->
 <div id="conteudo">
 
-<h1 style="text-align:center;font-family:'Great Vibes';font-size:40px;">
-Um presente seu 🎁
-</h1>
+  <!-- ✅ TÍTULO (MANTIDO, SÓ SEM BRILHO) -->
+  <h1 class="titulo-casamento">
+    Um presente seu, uma memória pra sempre🎁
+  </h1>
 
-<div class="container">
+  <div class="container">
 
+    <!-- GELADEIRA -->
+    <div class="item">
+      <img src="Geladeira/G INOX 1.png" class="produto">
+      <img src="Geladeira/G INOX 2.png" class="produto">
+
+      <div class="info">
+        <strong>Geladeira Duplex Inox</strong><br><br>
+        <button onclick="marcar(this)">Disponível</button>
+      </div>
+    </div>
+    
+    <!-- FOGÃO -->
+    <div class="item">
+     <img src="Fogao/fogao1.png" class="produto">
+     <img src="Fogao/fogao2.png" class="produto">
+
+      <div class="info">
+        <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong><br><br>
+       <button onclick="marcar(this)">Disponível</button>
+      </div>
+    </div>
+    
+    <!-- SOFA -->
+    <div class="item">
+      <img src="Sofa/sofa1.png" class="produto">
+      <img src="Sofa/sofa2.png" class="produto">
+
+      <div class="info">
+        <strong>Sofá Retrátil e Reclinável</strong><br><br>
+        <button onclick="marcar(this)">Disponível</button>
+      </div>
+    </div>
+
+    <!-- MESA -->
+    <div class="item">
+     <img src="Mesa/mesa1.png" class="produto">
+     <img src="Mesa/mesa2.png" class="produto">
+
+      <div class="info">
+        <strong>Mesa Madeira</strong><br><br>
+       <button onclick="marcar(this)">Disponível</button>
+      </div>
+    </div>
+    
 <!-- PIX -->
 <div class="item">
   <img src="Pix/Pix1.png" class="produto">
 
-  <div>
+  <div class="info">
     <strong>Pix</strong><br><br>
 
     <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
 
-    <button onclick="gerarPix()">Gerar Pix</button><br><br>
+<button onclick="gerarPix()">Gerar Pix</button>
 
-    <img id="qrcode" style="display:none; width:300px;"><br><br>
+<img id="qrcode" style="display:none; width:400px; max-width:100%;">
 
-    <button onclick="copiarPix()">Copiar código Pix</button>
+<button onclick="copiarPix()">Copiar código Pix</button>
 
-    <span id="checkPix">✔ Copiado!</span>
+<span id="checkPix" style="display:none; color:#00ff88; font-weight:bold;">
+  ✔ Copiado!
+</span>
+     
+     </span>
   </div>
 </div>
 
+  </div>
+
 </div>
-</div>
+
+<img src="Mouse/Aliancas move.gif" id="cursor">
 
 <script>
-
-// LOGIN
-const codigos = ["1234","5678","9999"];
-
-function validar() {
-  let input = document.getElementById("codigo").value;
-
-  if (codigos.includes(input)) {
-    document.getElementById("bloqueio").style.display = "none";
-    document.getElementById("conteudo").style.display = "block";
-  } else {
-    alert("Código inválido!");
-  }
-}
-
-// GERAR PIX
 function gerarPix() {
-
   let valor = document.getElementById("valorPix").value;
 
   if (!valor || valor <= 0) {
@@ -149,6 +362,7 @@ function gerarPix() {
 
   valor = parseFloat(valor).toFixed(2);
 
+  // FUNÇÃO CRC16 (CORRIGIDA)
   function crc16(str) {
     let crc = 0xFFFF;
 
@@ -156,7 +370,11 @@ function gerarPix() {
       crc ^= str.charCodeAt(i) << 8;
 
       for (let j = 0; j < 8; j++) {
-        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+        if (crc & 0x8000) {
+          crc = (crc << 1) ^ 0x1021;
+        } else {
+          crc = crc << 1;
+        }
       }
     }
 
@@ -164,27 +382,56 @@ function gerarPix() {
     return crc.toString(16).toUpperCase().padStart(4, '0');
   }
 
-  let base = "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com52040000530398654";
-  let tamanho = valor.length.toString().padStart(2, '0');
-  let resto = "5802BR5908PRESENTE6006BRASIL62070503***6304";
+  // MONTA PIX DINÂMICO
+// FORMATA VALOR (ex: 10.00)
+valor = parseFloat(valor).toFixed(2);
 
-  let payload = base + tamanho + valor + resto;
-  let crc = crc16(payload);
-  let codigoPix = payload + crc;
+// BASE DA SUA CHAVE (SEM VALOR)
+let base =
+  "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com52040000530398654";
 
+// TAMANHO DO VALOR (PIX EXIGE ISSO)
+let tamanho = valor.length.toString().padStart(2, '0');
+
+// RESTO FIXO
+let resto =
+  "5802BR5908PRESENTE6006BRASIL62070503***6304";
+
+// MONTA PIX COMPLETO
+let payload = base + tamanho + valor + resto;
+
+// CRC (OBRIGATÓRIO)
+let crc = crc16(payload);
+
+// CÓDIGO FINAL
+let codigoPix = payload + crc;
+
+  // SALVAR PARA COPIAR
   window.codigoPixGerado = codigoPix;
+  }
 
-  // QR CODE DINÂMICO
-  let qr = document.getElementById("qrcode");
-  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + codigoPix;
-  qr.style.display = "block";
+ const codigos = ["1234","5678","9999"];
+
+function validar() {
+  let input = document.getElementById("codigo").value.trim();
+
+  if (codigos.includes(input)) {
+    document.getElementById("bloqueio").style.display = "none";
+    document.getElementById("conteudo").style.display = "block";
+  } else {
+    alert("Código inválido!");
+  }
+
+function marcar(btn) {
+  btn.classList.toggle("comprado");
+  btn.innerText = btn.classList.contains("comprado")
+    ? "Comprado"
+    : "Disponível";
 }
 
-// COPIAR PIX
 function copiarPix() {
-
   if (!window.codigoPixGerado) {
-    alert("Digite o valor e gere o Pix primeiro!");
+    alert("Gere o Pix primeiro!");
     return;
   }
 
@@ -192,14 +439,28 @@ function copiarPix() {
 
   let check = document.getElementById("checkPix");
 
+  check.style.display = "inline-block";
   check.classList.add("mostrar");
 
   setTimeout(() => {
     check.classList.remove("mostrar");
+    check.style.display = "none";
   }, 2000);
 }
+// CURSOR
+const cursor = document.getElementById("cursor");
 
-</script>
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.pageX + "px";
+  cursor.style.top = e.pageY + "px";
+});
+
+document.querySelectorAll("a, button, img").forEach(el => {
+  el.addEventListener("mouseenter", () => cursor.style.display = "block");
+  el.addEventListener("mouseleave", () => cursor.style.display = "none");
+});
+  }
+  </script>
 
 </body>
 </html>
