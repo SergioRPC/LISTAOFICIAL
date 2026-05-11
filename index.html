@@ -2,7 +2,45 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>🎁 Lista de Casamento</title>
+<!-- Fonte elegante -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<h1 class="titulo-casamento">
+  Um presente seu, uma memória pra sempre
+</h1>
+
+<style>
+.titulo-casamento {
+  font-family: 'Great Vibes', cursive;
+  font-size: 48px;
+  text-align: center;
+  color: #6a0dad;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px black;
+
+  /* ANIMAÇÃO */
+  opacity: 0;
+  animation: fadeElegante 2s ease forwards;
+}
+
+/* efeito fade + leve subida */
+@keyframes fadeElegante {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* fundo opcional */
+body {
+  background: linear-gradient(135deg, #2b0033, #000000);
+}
+</style>
 
 <style>
 
@@ -171,8 +209,7 @@ button:hover {
 
       <div class="info">
         <strong>Fogão 4 Bocas mesa vidro inox/preto</strong><br><br>
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-        <button onclick="marcar(this)">Disponível</button>
+       <button onclick="marcar(this)">Disponível</button>
       </div>
     </div>
     
@@ -183,7 +220,6 @@ button:hover {
 
       <div class="info">
         <strong>Sofá Retrátil e Reclinável</strong><br><br>
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
         <button onclick="marcar(this)">Disponível</button>
       </div>
     </div>
@@ -195,8 +231,7 @@ button:hover {
 
       <div class="info">
         <strong>Mesa Madeira</strong><br><br>
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-        <button onclick="marcar(this)">Disponível</button>
+       <button onclick="marcar(this)">Disponível</button>
       </div>
     </div>
     
