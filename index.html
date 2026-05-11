@@ -193,14 +193,11 @@ const codigos = {
 /* ===== LOGIN ===== */
 function validar() {
   let input = document.getElementById("codigo").value.trim();
-  let autorizado = false;
 
-  for (let pessoa in codigos) {
-    if (codigos[pessoa] === input) {
-      autorizado = true;
-      break;
-    }
-  }
+  // força tudo para texto simples
+  input = input.toString();
+
+  let autorizado = Object.values(codigos).includes(input);
 
   if (autorizado) {
     document.getElementById("bloqueio").style.display = "none";
