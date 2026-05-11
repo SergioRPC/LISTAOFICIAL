@@ -10,6 +10,63 @@
 </h1>
 
 <style>
+  .titulo-casamento {
+  font-family: 'Great Vibes', cursive;
+  font-size: 48px;
+  text-align: center;
+  color: #d8b4ff; /* roxo mais sofisticado */
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+
+  /* animação entrada */
+  opacity: 0;
+  animation: fadeElegante 2s ease forwards;
+
+  /* leve brilho base */
+  text-shadow: 0 0 5px #a855f7, 0 0 10px #6a0dad;
+}
+
+/* brilho passando */
+.titulo-casamento::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.8),
+    transparent
+  );
+
+  animation: brilhoLuxo 3s infinite;
+}
+
+/* animação de entrada */
+@keyframes fadeElegante {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* animação do brilho */
+@keyframes brilhoLuxo {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
 .titulo-casamento {
   font-family: 'Great Vibes', cursive;
   font-size: 48px;
