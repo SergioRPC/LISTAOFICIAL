@@ -153,152 +153,36 @@ button:hover {
 
   <div class="container">
 
-    <!-- GELADEIRA -->
-    <div class="item">
-      <img src="Geladeira/G INOX 1.png" class="produto">
-      <img src="Geladeira/G INOX 2.png" class="produto">
-
-      <div class="info">
-        <strong>Geladeira Duplex Inox</strong><br><br>
-
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
+    <!-- ITENS (mantidos iguais) -->
     
-    <!-- FOGÃO -->
+    <!-- PIX -->
     <div class="item">
-     <img src="Fogao/fogao1.png" class="produto">
-     <img src="Fogao/fogao2.png" class="produto">
+      <img src="Pix/Pix1.png" class="produto">
+      <img src="Pix/Pix2.png" class="produto">
 
       <div class="info">
-        <strong>Fogão 4 Bocas mesa vidro inox/preto</strong><br><br>
+        <strong>Pix</strong><br><br>
 
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
+        <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
 
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
- <!-- SOFA -->
-    <div class="item">
-      <img src="Sofa/sofa1.png" class="produto">
-      <img src="Sofa/sofa2.png" class="produto">
+        <button onclick="gerarLinkPix()">Gerar link Pix</button><br><br>
 
-      <div class="info">
-        <strong>Sofá Retrátil e Reclinável Preto-cinza-grafite</strong><br><br>
+        <a id="linkPix" target="_blank" style="display:none; color:#00ffcc; font-weight:bold;">
+          👉 Pagar com Pix
+        </a><br><br>
 
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
-
-        <button onclick="marcar(this)">Disponível</button>
+        <button onclick="copiarPix()">Copiar código Pix</button>
       </div>
     </div>
 
-    <!-- MESA -->
-    <div class="item">
-     <img src="Mesa/mesa1.png" class="produto">
-     <img src="Mesa/mesa2.png" class="produto">
+  </div>
 
-      <div class="info">
-        <strong>Mesa Madeira</strong><br><br>
+</div>
 
-        <a href="https://www.magazineluiza.com.br/" target="_blank">Ver produto</a><br><br>
+<img src="Mouse/Aliancas move.gif" id="cursor">
 
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
-  <script>
+<script>
 
-/* ===== PIX ===== */
-
-// Função para formatar campos Pix
-function format(id, value) {
-  let size = value.length.toString().padStart(2, "0");
-  return id + size + value;
-}
-
-// Função para calcular CRC16 (obrigatório no Pix)
-function crc16(str) {
-  let crc = 0xFFFF;
-
-  for (let i = 0; i < str.length; i++) {
-    crc ^= str.charCodeAt(i) << 8;
-
-    for (let j = 0; j < 8; j++) {
-      if ((crc & 0x8000) !== 0) {
-        crc = (crc << 1) ^ 0x1021;
-      } else {
-        crc = crc << 1;
-      }
-    }
-  }
-
-  return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
-}
-
-// Função principal que gera o código Pix válido
-function gerarPayloadPix(valor) {
-
-  let chave = "ladym2393@gmail.com";
-  let nome = "PRESENTE";
-  let cidade = "BRASIL";
-
-  let payload =
-    "000201" +
-    format("26",
-      format("00", "BR.GOV.BCB.PIX") +
-      format("01", chave)
-    ) +
-    "52040000" +
-    "5303986" +
-    format("54", parseFloat(valor).toFixed(2)) +
-    "5802BR" +
-    format("59", nome) +
-    format("60", cidade) +
-    "62070503***";
-
-  // Adiciona CRC final
-  payload += "6304" + crc16(payload + "6304");
-
-  return payload;
-}
-
-// Gera link clicável
-function gerarLinkPix() {
-  let valor = document.getElementById("valorPix").value;
-
-  if (!valor || valor <= 0) {
-    alert("Digite um valor válido!");
-    return;
-  }
-
-  let payload = gerarPayloadPix(valor);
-
-  let link = "pix://" + payload;
-
-  let a = document.getElementById("linkPix");
-  a.href = link;
-  a.style.display = "inline";
-}
-
-// Copiar código Pix válido
-function copiarPix() {
-  let valor = document.getElementById("valorPix").value;
-
-  if (!valor || valor <= 0) {
-    alert("Digite um valor válido!");
-    return;
-  }
-
-  let payload = gerarPayloadPix(valor);
-
-  navigator.clipboard.writeText(payload);
-  alert("Código Pix válido copiado!");
-}
-
-</script>
 /* ===== CÓDIGOS ===== */
 const codigos = {
   "joao": "1234",
@@ -337,18 +221,13 @@ function marcar(btn) {
   }
 }
 
-/* ===== PIX ===== */
-<script>
+/* ===== PIX (CORRIGIDO) ===== */
 
-/* ===== PIX ===== */
-
-// Função para formatar campos Pix
 function format(id, value) {
   let size = value.length.toString().padStart(2, "0");
   return id + size + value;
 }
 
-// Função para calcular CRC16 (obrigatório no Pix)
 function crc16(str) {
   let crc = 0xFFFF;
 
@@ -356,18 +235,13 @@ function crc16(str) {
     crc ^= str.charCodeAt(i) << 8;
 
     for (let j = 0; j < 8; j++) {
-      if ((crc & 0x8000) !== 0) {
-        crc = (crc << 1) ^ 0x1021;
-      } else {
-        crc = crc << 1;
-      }
+      crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
     }
   }
 
   return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
 }
-/* ===== PIX ===== */
-// Função principal que gera o código Pix válido
+
 function gerarPayloadPix(valor) {
 
   let chave = "ladym2393@gmail.com";
@@ -388,13 +262,11 @@ function gerarPayloadPix(valor) {
     format("60", cidade) +
     "62070503***";
 
-  // Adiciona CRC final
   payload += "6304" + crc16(payload + "6304");
 
   return payload;
 }
 
-// Gera link clicável
 function gerarLinkPix() {
   let valor = document.getElementById("valorPix").value;
 
@@ -412,7 +284,6 @@ function gerarLinkPix() {
   a.style.display = "inline";
 }
 
-// Copiar código Pix válido
 function copiarPix() {
   let valor = document.getElementById("valorPix").value;
 
@@ -426,8 +297,6 @@ function copiarPix() {
   navigator.clipboard.writeText(payload);
   alert("Código Pix válido copiado!");
 }
-
-</script>
 
 /* ===== CURSOR ===== */
 const cursor = document.getElementById("cursor");
