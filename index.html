@@ -370,7 +370,6 @@ function gerarPix() {
       for (let j = 0; j < 8; j++) {
         crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
       }
-    }
     return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
   }
 
@@ -415,7 +414,6 @@ function validar() {
   } else {
     alert("Código inválido!");
   }
-}
 
 function marcar(btn) {
   btn.classList.toggle("comprado");
@@ -460,7 +458,7 @@ function copiarPix() {
     check.classList.remove("mostrar");
     check.style.display = "none";
   }, 2000);
-}
+  
   navigator.clipboard.writeText("PIX GERADO");
 
   let check = document.getElementById("checkPix");
