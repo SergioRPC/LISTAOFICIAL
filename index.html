@@ -362,15 +362,24 @@ function gerarPix() {
 
   valor = parseFloat(valor).toFixed(2);
 
-  // FUNÇÃO CRC16 (OBRIGATÓRIO PIX)
+  // FUNÇÃO CRC16 (CORRIGIDA)
   function crc16(str) {
     let crc = 0xFFFF;
+
     for (let i = 0; i < str.length; i++) {
       crc ^= str.charCodeAt(i) << 8;
+
       for (let j = 0; j < 8; j++) {
-        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+        if (crc & 0x8000) {
+          crc = (crc << 1) ^ 0x1021;
+        } else {
+          crc = crc << 1;
+        }
       }
-    return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    crc &= 0xFFFF;
+    return crc.toString(16).toUpperCase().padStart(4, '0');
   }
 
   // MONTA PIX DINÂMICO
@@ -389,17 +398,15 @@ function gerarPix() {
   let crc = crc16(payload);
   let codigoPix = payload + crc;
 
-  // SALVA PARA COPIAR
+  // SALVAR PARA COPIAR
   window.codigoPixGerado = codigoPix;
 
-  // GERA QR CODE DINÂMICO
+  // GERAR QR CODE
   let img = document.getElementById("qrcode");
-  img.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(codigoPix);
-  img.style.display = "block";
-}
+  img.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+    encodeURIComponent(codigoPix);
 
-  let img = document.getElementById("qrcode");
-  img.src = "Qrcode/qrcode-pix.png";
   img.style.display = "block";
 }
 
@@ -414,10 +421,13 @@ function validar() {
   } else {
     alert("Código inválido!");
   }
+}
 
 function marcar(btn) {
   btn.classList.toggle("comprado");
-  btn.innerText = btn.classList.contains("comprado") ? "Comprado" : "Disponível";
+  btn.innerText = btn.classList.contains("comprado")
+    ? "Comprado"
+    : "Disponível";
 }
 
 function copiarPix() {
@@ -437,38 +447,9 @@ function copiarPix() {
     check.classList.remove("mostrar");
     check.style.display = "none";
   }, 2000);
+}
 
-  // formata valor para padrão PIX (ex: 10.00)
-  valor = parseFloat(valor).toFixed(2);
-
-  // monta código com valor dinâmico
-  const codigoPix =
-    "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com5204000053039865405" +
-    valor +
-    "5802BR5908PRESENTE6006BRASIL62070503***6304CAE6";
-
-  navigator.clipboard.writeText(codigoPix);
-
-  let check = document.getElementById("checkPix");
-
-  check.style.display = "inline-block";
-  check.classList.add("mostrar");
-
-  setTimeout(() => {
-    check.classList.remove("mostrar");
-    check.style.display = "none";
-  }, 2000);
-  
-  navigator.clipboard.writeText("PIX GERADO");
-
-  let check = document.getElementById("checkPix");
-
-  check.classList.add("mostrar");
-
-  setTimeout(() => {
-    check.classList.remove("mostrar");
-  }, 2000);
-
+// CURSOR
 const cursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove", e => {
@@ -480,7 +461,7 @@ document.querySelectorAll("a, button, img").forEach(el => {
   el.addEventListener("mouseenter", () => cursor.style.display = "block");
   el.addEventListener("mouseleave", () => cursor.style.display = "none");
 });
- </script>
+  </script>
 
 </body>
 </html>
