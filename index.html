@@ -227,6 +227,19 @@ button:focus {
 button:active {
   filter: brightness(0.9);
 }
+  /* CHECK ANIMADO */
+#checkPix {
+  display: none;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+#checkPix.mostrar {
+  display: inline-block;
+  opacity: 1;
+  transform: scale(1.2);
+}
 </style>
 </head>
 
@@ -318,6 +331,9 @@ button:active {
 <img id="qrcode" style="display:none; width:400px; max-width:100%;">
 
 <button onclick="copiarPix()">Copiar código Pix</button>
+    <span id="checkPix" style="display:none; color:#00ff88; font-weight:bold;">
+  ✔ Copiado!
+</span>
   </div>
 </div>
 
@@ -364,7 +380,14 @@ function copiarPix() {
   if (!valor || valor <= 0) return alert("Digite um valor válido!");
 
   navigator.clipboard.writeText("PIX GERADO");
-  alert("Código Pix válido copiado!");
+
+  let check = document.getElementById("checkPix");
+
+  check.classList.add("mostrar");
+
+  setTimeout(() => {
+    check.classList.remove("mostrar");
+  }, 2000);
 }
 
 const cursor = document.getElementById("cursor");
