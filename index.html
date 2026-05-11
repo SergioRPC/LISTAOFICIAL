@@ -226,7 +226,18 @@ button:hover {
 <img src="Mouse/Aliancas move.gif" id="cursor">
 
 <script>
+function gerarPix() {
+  let valor = document.getElementById("valorPix").value;
 
+  if (!valor || valor <= 0) {
+    alert("Digite um valor válido!");
+    return;
+  }
+
+  let img = document.getElementById("qrcode");
+  img.src = "qrcode-pix.png";
+  img.style.display = "block";
+}
 /* ===== LOGIN ===== */
 const codigos = ["1234","5678","9999"];
 
