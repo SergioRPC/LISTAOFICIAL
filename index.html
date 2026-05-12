@@ -348,13 +348,21 @@ button:active {
 <img src="Mouse/Aliancas move.gif" id="cursor">
 
 <script>
-function gerarPix() {
-  let valor = document.getElementById("valorPix").value;
-
-  if (!valor || valor <= 0) {
-    alert("Digite um valor válido!");
+function copiarPix() {
+  if (!window.codigoPixGerado) {
+    alert("Gere o Pix primeiro!");
     return;
   }
+
+  navigator.clipboard.writeText(window.codigoPixGerado);
+
+  let toast = document.getElementById("toastPix");
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
+}
 
   valor = parseFloat(valor).toFixed(2);
 
@@ -444,6 +452,6 @@ document.querySelectorAll("a, button, img").forEach(el => {
 });
   }
   </script>
-
+<div id="toastPix">✔ Código Pix copiado</div>
 </body>
 </html>
