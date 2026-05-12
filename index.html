@@ -342,16 +342,14 @@ button:active {
 
 <button onclick="copiarPix()">Copiar código Pix</button>
 
-<span id="checkPix" style="display:none; color:#00ff88; font-weight:bold;">
-  ✔ Copiado!
+<span> < let toast = document.getElementById("toastPix");</let>
+
+< toast.classList.add("show");
+
+<setTimeout(() => {
+  <toast.classList.remove("show");
+}, 2000);
 </span>
-     
-     </span>
-  </div>
-</div>
-
-  </div>
-
 </div>
 
 <img src="Mouse/Aliancas move.gif" id="cursor">
