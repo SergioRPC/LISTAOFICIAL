@@ -367,7 +367,6 @@ function gerarPix() {
 
   valor = parseFloat(valor).toFixed(2);
 
-  // FUNÇÃO CRC16 (CORRIGIDA)
   function crc16(str) {
     let crc = 0xFFFF;
 
@@ -387,32 +386,21 @@ function gerarPix() {
     return crc.toString(16).toUpperCase().padStart(4, '0');
   }
 
-  // MONTA PIX DINÂMICO
-// FORMATA VALOR (ex: 10.00)
-valor = parseFloat(valor).toFixed(2);
+  let base = "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com52040000530398654";
+  let tamanho = valor.length.toString().padStart(2, '0');
+  let resto = "5802BR5908PRESENTE6006BRASIL62070503***6304";
 
-// BASE DA SUA CHAVE (SEM VALOR)
-let base =
-  "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com52040000530398654";
+  let payload = base + tamanho + valor + resto;
+  let crc = crc16(payload);
+  let codigoPix = payload + crc;
 
-// TAMANHO DO VALOR (PIX EXIGE ISSO)
-let tamanho = valor.length.toString().padStart(2, '0');
-
-// RESTO FIXO
-let resto =
-  "5802BR5908PRESENTE6006BRASIL62070503***6304";
-
-// MONTA PIX COMPLETO
-let payload = base + tamanho + valor + resto;
-
-// CRC (OBRIGATÓRIO)
-let crc = crc16(payload);
-
-// CÓDIGO FINAL
-let codigoPix = payload + crc;
-
-  // SALVAR PARA COPIAR
   window.codigoPixGerado = codigoPix;
+
+  // 🔥 AQUI ESTÁ O QUE FALTAVA (QR CODE)
+  let qr = document.getElementById("qrcode");
+  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(codigoPix);
+  qr.style.display = "block";
+}
   }
 
  const codigos = ["1234","5678","9999"];
