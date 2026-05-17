@@ -167,12 +167,14 @@ button:hover {
 /* ITEM */
 .item {
   display: flex;
+  justify-content: center; /* CENTRALIZA TUDO */
   align-items: center;
   gap: 20px;
   background: rgba(255,255,255,0.08);
   padding: 20px;
   margin: 15px 0;
   border-radius: 12px;
+  text-align: center;
 }
 
 /* IMAGEM */
@@ -283,65 +285,66 @@ button:active {
   <div class="container">
 
     <!-- GELADEIRA -->
-    <div class="item">
-      <img src="Geladeira/G INOX 1.png" class="produto">
-      <img src="Geladeira/G INOX 2.png" class="produto">
-    </div>
-      <div class="info">
-        <strong>Geladeira Duplex Inox</strong><br><br>
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
+  <div class="item">
+  <div class="imagens">
+    <img src="Geladeira/G INOX 1.png" class="produto">
+    <img src="Geladeira/G INOX 2.png" class="produto">
+  </div>
+  <div class="info">
+    <strong>Geladeira Duplex Inox</strong><br><br>
+    <button onclick="marcar(this)">Disponível</button>
+  </div>
+</div>
     
     <!-- FOGÃO -->
-    <div class="item">
-     <img src="Fogao/fogao1.png" class="produto">
-     <img src="Fogao/fogao2.png" class="produto">
-    </div>
-      <div class="info">
-        <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong><br><br>
-       <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
-    
+   <div class="item">
+  <div class="imagens">
+    <img src="Fogao/fogao1.png" class="produto"> 
+    <img src="Fogao/fogao2.png" class="produto"> 
+  </div>
+  <div class="info">
+    <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong><br><br>
+    <button onclick="marcar(this)">Disponível</button>
+  </div>
+</div>
+
     <!-- SOFA -->
-    <div class="item">
+<div class="item">
+  <div class="imagens">
       <img src="Sofa/sofa1.png" class="produto">
-      <img src="Sofa/sofa2.png" class="produto">
-    </div>
-      <div class="info">
-        <strong>Sofá Retrátil e Reclinável</strong><br><br>
-        <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
+      <img src="Sofa/sofa2.png" class="produto">  
+    </div> 
+  <div class="info">
+    <strong>Sofá Retrátil e Reclinável</strong><br><br>
+    <button onclick="marcar(this)">Disponível</button>
+  </div>
+</div>
 
     <!-- MESA -->
-    <div class="item">
+<div class="item">
+  <div class="imagens">
      <img src="Mesa/mesa1.png" class="produto">
-     <img src="Mesa/mesa2.png" class="produto">
+     <img src="Mesa/mesa2.png" class="produto"> 
     </div>
-      <div class="info">
-        <strong>Mesa Madeira</strong><br><br>
-       <button onclick="marcar(this)">Disponível</button>
-      </div>
-    </div>
+  <div class="info">
+    <strong>Mesa Madeira</strong><br><br>
+    <button onclick="marcar(this)">Disponível</button>
+  </div>
+</div>
     
 <!-- PIX -->
 <div class="item">
+   <div class="imagens"></div>
   <img src="Pix/Pix1.png" class="produto">
-
-  <div class="info">
     <strong>Pix</strong><br><br>
-
+ <div class="item">
+   <div class="imagens"></div>
     <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
-  </div>
-<button onclick="gerarPix()">Gerar Pix</button>
-
-<img id="qrcode" style="display:none; width:400px; max-width:100%;">
-
+  <button onclick="gerarPix()">Gerar Pix</button>
+<img id="qrcode" style="display:none; width:150px; max-width:100%;">
 <button onclick="copiarPix()">Copiar código Pix</button>
 <img src="Mouse/Aliancas move.gif" id="cursor">
-
+</div>
 <script>
 function gerarPix() {
   let valor = document.getElementById("valorPix").value;
