@@ -259,7 +259,7 @@ button:active {
   <input id="codigo" placeholder="Digite seu código">
 
   <button onclick="validar()">Entrar</button>
-</div>
+
   <a class="whats"
      href="https://wa.me/5511989163463?text=Olá,%20quero%20o%20código%20da%20lista%20de%20casamento"
      target="_blank">
@@ -274,13 +274,12 @@ button:active {
   <!-- ✅ TÍTULO (MANTIDO, SÓ SEM BRILHO) -->
   <h1 
     class="titulo-casamento">
-    <div class="topo-casamento"></div>
+    <div class="topo-casamento">
    <p class="frase">Um presente seu, uma memória pra sempre 🎁</p>
-     <div class="nomes">Sergio & Karina 👩🏻‍❤️‍💋‍👨🏻</div>
+     <div class="nomes">Sergio & Karina 👩🏻‍❤️‍💋‍👨🏻
   <p class="data">28 de Fevereiro de 2027 📅</p>
- </h1>
  </div>
- 
+  </h1>
 
   <div class="container">
 
@@ -340,49 +339,9 @@ button:active {
 <button onclick="gerarPix()">Gerar Pix</button>
 
 <img id="qrcode" style="display:none; width:400px; max-width:100%;">
-<function gerarPix() {
-  let valor = document.getElementById("valorPix").value;
 
-  if (!valor) {
-    alert("Digite um valor!");
-    return;
-  }
+<button onclick="copiarPix()">Copiar código Pix</button>
 
-  valor = parseFloat(valor).toFixed(2);
-
-  function crc16(str) {
-    let crc = 0xFFFF;
-
-    for (let i = 0; i < str.length; i++) {
-      crc ^= str.charCodeAt(i) << 8;
-
-      for (let j = 0; j < 8; j++) {
-        if (crc & 0x8000) {
-          crc = (crc << 1) ^ 0x1021;
-        } else {
-          crc = crc << 1;
-        }
-      }
-    }
-
-    crc &= 0xFFFF;
-    return crc.toString(16).toUpperCase().padStart(4, '0');
-  }
-
-  let base = "00020126410014BR.GOV.BCB.PIX0119ladym2393@gmail.com52040000530398654";
-  let tamanho = valor.length.toString().padStart(2, '0');
-  let resto = "5802BR5908PRESENTE6006BRASIL62070503***6304";
-
-  let payload = base + tamanho + valor + resto;
-  let crc = crc16(payload);
-  let codigoPix = payload + crc;
-
-  window.codigoPixGerado = codigoPix;
-
-  let qr = document.getElementById("qrcode");
-  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(codigoPix);
-  qr.style.display = "block";
-}
 <button onclick="copiarPix()">Copiar código Pix</button>
 </div>
 
@@ -404,7 +363,9 @@ function copiarPix() {
     toast.classList.remove("show");
   }, 2000);
 }
-{
+
+  valor = parseFloat(valor).toFixed(2);
+
   function crc16(str) {
     let crc = 0xFFFF;
 
@@ -441,7 +402,7 @@ function copiarPix() {
 
  const codigos = ["1234","5678","9999"];
 
- function validar() {
+function validar() {
   let input = document.getElementById("codigo").value.trim();
 
   if (codigos.includes(input)) {
@@ -450,13 +411,20 @@ function copiarPix() {
   } else {
     alert("Código inválido!");
   }
-}
+
 function marcar(btn) {
   btn.classList.toggle("comprado");
   btn.innerText = btn.classList.contains("comprado")
     ? "Comprado"
     : "Disponível";
 }
+
+function copiarPix() {
+  if (!window.codigoPixGerado) {
+    alert("Gere o Pix primeiro!");
+    return;
+  }
+
   navigator.clipboard.writeText(window.codigoPixGerado);
 
   let check = document.getElementById("checkPix");
@@ -481,6 +449,7 @@ document.querySelectorAll("a, button, img").forEach(el => {
   el.addEventListener("mouseenter", () => cursor.style.display = "block");
   el.addEventListener("mouseleave", () => cursor.style.display = "none");
 });
+  }
   <div id="toastPix">✔ Código Pix copiado</div>
   </script>
 </body>
