@@ -60,12 +60,15 @@
 @media (max-width: 600px) {
 
   /* itens mais organizados */
-  .item {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-    padding: 15px;
-  }
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* separa em 3 partes */
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+}
 
   /* imagens menores (melhor leitura) */
   .produto {
@@ -167,16 +170,32 @@ button:hover {
 /* ITEM */
 .item {
   display: flex;
-  justify-content: center; /* CENTRALIZA TUDO */
+  justify-content: space-between; /* CENTRALIZA TUDO */
   align-items: center;
   gap: 20px;
   background: rgba(255,255,255,0.08);
   padding: 20px;
-  margin: 15px 0;
+  margin: 12px 0;
   border-radius: 12px;
   text-align: center;
 }
+.imagens {
+  display: flex;
+  gap: 10px;
+  width: 33%;
+  justify-content: flex-start;
+}
 
+.botao {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  width: 33%;
+  text-align: right;
+}
 /* IMAGEM */
 .produto {
   width: 120px;
@@ -286,50 +305,73 @@ button:active {
 
     <!-- GELADEIRA -->
   <div class="item">
+
   <div class="imagens">
     <img src="Geladeira/G INOX 1.png" class="produto">
-    <img src="Geladeira/G INOX 2.png" class="produto">
-  </div>
-  <div class="info">
-    <strong>Geladeira Duplex Inox</strong><br><br>
+    <img src="Geladeira/G INOX 2.png" class="produto"> 
+ </div>
+
+  <div class="botao">
     <button onclick="marcar(this)">Disponível</button>
   </div>
+
+  <div class="info">
+    <strong>Geladeira Duplex Inox</strong>
+  </div>
+
 </div>
     
     <!-- FOGÃO -->
-   <div class="item">
+<div class="item">
+
   <div class="imagens">
     <img src="Fogao/fogao1.png" class="produto"> 
     <img src="Fogao/fogao2.png" class="produto"> 
-  </div>
-  <div class="info">
-    <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong><br><br>
+ </div> 
+
+  <div class="botao">
     <button onclick="marcar(this)">Disponível</button>
+  </div>
+
+  <div class="info">
+    <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong> 
   </div>
 </div>
 
     <!-- SOFA -->
 <div class="item">
+
   <div class="imagens">
       <img src="Sofa/sofa1.png" class="produto">
-      <img src="Sofa/sofa2.png" class="produto">  
-    </div> 
-  <div class="info">
-    <strong>Sofá Retrátil e Reclinável</strong><br><br>
+      <img src="Sofa/sofa2.png" class="produto"> 
+ </div> 
+
+  <div class="botao">
     <button onclick="marcar(this)">Disponível</button>
   </div>
+
+  <div class="info">
+    <strong>Sofá Retrátil e Reclinável</strong> 
+  </div>
+
 </div>
 
     <!-- MESA -->
 <div class="item">
+
   <div class="imagens">
-     <img src="Mesa/mesa1.png" class="produto">
+      <img src="Mesa/mesa1.png" class="produto">
      <img src="Mesa/mesa2.png" class="produto"> 
-    </div>
-  <div class="info">
-    <strong>Mesa Madeira</strong><br><br>
+ </div> 
+
+  <div class="botao">
     <button onclick="marcar(this)">Disponível</button>
   </div>
+
+  <div class="info">
+    <strong>Mesa Madeira</strong> 
+  </div>
+
 </div>
     
 <!-- PIX -->
