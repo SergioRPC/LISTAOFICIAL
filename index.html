@@ -272,14 +272,13 @@ button:active {
 <div id="conteudo">
 
   <!-- ✅ TÍTULO (MANTIDO, SÓ SEM BRILHO) -->
-  <h1 
-    class="titulo-casamento">
-    <div class="topo-casamento">
-   <p class="frase">Um presente seu, uma memória pra sempre 🎁</p>
-     <div class="nomes">Sergio & Karina 👩🏻‍❤️‍💋‍👨🏻
-  <p class="data">28 de Fevereiro de 2027 📅</p>
- </div>
-  </h1>
+ <div class="titulo-casamento">
+  <div class="topo-casamento">
+    <p class="frase">Um presente seu, uma memória pra sempre 🎁</p>
+    <div class="nomes">Sergio & Karina 👩🏻‍❤️‍💋‍👨🏻</div>
+    <p class="data">28 de Fevereiro de 2027 📅</p>
+  </div>
+</div>
 
   <div class="container">
 
@@ -287,7 +286,7 @@ button:active {
     <div class="item">
       <img src="Geladeira/G INOX 1.png" class="produto">
       <img src="Geladeira/G INOX 2.png" class="produto">
-
+    </div>
       <div class="info">
         <strong>Geladeira Duplex Inox</strong><br><br>
         <button onclick="marcar(this)">Disponível</button>
@@ -298,7 +297,7 @@ button:active {
     <div class="item">
      <img src="Fogao/fogao1.png" class="produto">
      <img src="Fogao/fogao2.png" class="produto">
-
+    </div>
       <div class="info">
         <strong>Fogão 4/5 Bocas mesa vidro inox/preto</strong><br><br>
        <button onclick="marcar(this)">Disponível</button>
@@ -309,7 +308,7 @@ button:active {
     <div class="item">
       <img src="Sofa/sofa1.png" class="produto">
       <img src="Sofa/sofa2.png" class="produto">
-
+    </div>
       <div class="info">
         <strong>Sofá Retrátil e Reclinável</strong><br><br>
         <button onclick="marcar(this)">Disponível</button>
@@ -320,7 +319,7 @@ button:active {
     <div class="item">
      <img src="Mesa/mesa1.png" class="produto">
      <img src="Mesa/mesa2.png" class="produto">
-
+    </div>
       <div class="info">
         <strong>Mesa Madeira</strong><br><br>
        <button onclick="marcar(this)">Disponível</button>
@@ -335,34 +334,22 @@ button:active {
     <strong>Pix</strong><br><br>
 
     <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
-
+  </div>
 <button onclick="gerarPix()">Gerar Pix</button>
 
 <img id="qrcode" style="display:none; width:400px; max-width:100%;">
 
 <button onclick="copiarPix()">Copiar código Pix</button>
-
-<button onclick="copiarPix()">Copiar código Pix</button>
-</div>
-
 <img src="Mouse/Aliancas move.gif" id="cursor">
 
 <script>
-function copiarPix() {
-  if (!window.codigoPixGerado) {
-    alert("Gere o Pix primeiro!");
+function gerarPix() {
+  let valor = document.getElementById("valorPix").value;
+
+  if (!valor) {
+    alert("Digite um valor!");
     return;
   }
-
-  navigator.clipboard.writeText(window.codigoPixGerado);
-
-  let toast = document.getElementById("toastPix");
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2000);
-}
 
   valor = parseFloat(valor).toFixed(2);
 
@@ -395,10 +382,10 @@ function copiarPix() {
 
   window.codigoPixGerado = codigoPix;
 
-  // 🔥 AQUI ESTÁ O QUE FALTAVA (QR CODE)
   let qr = document.getElementById("qrcode");
   qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(codigoPix);
   qr.style.display = "block";
+}
 
  const codigos = ["1234","5678","9999"];
 
@@ -411,6 +398,7 @@ function validar() {
   } else {
     alert("Código inválido!");
   }
+}
 
 function marcar(btn) {
   btn.classList.toggle("comprado");
@@ -427,14 +415,12 @@ function copiarPix() {
 
   navigator.clipboard.writeText(window.codigoPixGerado);
 
-  let check = document.getElementById("checkPix");
-
-  check.style.display = "inline-block";
-  check.classList.add("mostrar");
+  document.getElementById("toastPix").style.display = "inline-block";
+  document.getElementById("toastPix").classList.add("mostrar");
 
   setTimeout(() => {
-    check.classList.remove("mostrar");
-    check.style.display = "none";
+    document.getElementById("toastPix").classList.remove("mostrar");
+    document.getElementById("toastPix").style.display = "none";
   }, 2000);
 }
 // CURSOR
@@ -449,8 +435,7 @@ document.querySelectorAll("a, button, img").forEach(el => {
   el.addEventListener("mouseenter", () => cursor.style.display = "block");
   el.addEventListener("mouseleave", () => cursor.style.display = "none");
 });
-  }
-  <div id="toastPix">✔ Código Pix copiado</div>
   </script>
+    <div id="toastPix">✔ Código Pix copiado</div>
 </body>
 </html>
