@@ -211,7 +211,13 @@ button:hover {
 
 /* TEXTO */
 .info {
-  text-align: left;
+  width: 33%;
+  text-align: right;
+}
+
+.info img {
+  display: block;
+  margin-left: auto;
 }
 
 /* BOTÃO COMPRADO */
@@ -376,15 +382,27 @@ button:active {
     
 <!-- PIX -->
 <div class="item">
-   <div class="imagens"></div>
-  <img src="Pix/Pix1.png" class="produto">
-    <strong>Pix</strong><br><br>
- <div class="item">
-   <div class="imagens"></div>
-    <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
-  <button onclick="gerarPix()">Gerar Pix</button>
-<img id="qrcode" style="display:none; width:150px; max-width:100%;">
-<button onclick="copiarPix()">Copiar código Pix</button>
+
+  <!-- ESQUERDA -->
+  <div class="imagens">
+    <img src="Pix/Pix1.png" class="produto">
+  </div>
+
+  <!-- MEIO -->
+  <div class="botao">
+    <div>
+      <input type="number" id="valorPix" placeholder="Digite o valor (R$)"><br><br>
+      <button onclick="gerarPix()">Gerar Pix</button>
+    </div>
+  </div>
+
+  <!-- DIREITA -->
+  <div class="info">
+    <img id="qrcode" style="display:none; width:120px;"><br><br>
+    <button onclick="copiarPix()">Copiar código Pix</button>
+  </div>
+
+</div>
 <img src="Mouse/Aliancas move.gif" id="cursor">
 </div>
 <script>
@@ -453,21 +471,27 @@ function marcar(btn) {
 }
 
 function copiarPix() {
+  // ❌ se não gerou pix
   if (!window.codigoPixGerado) {
     alert("Gere o Pix primeiro!");
     return;
   }
 
+  // ✅ copia
   navigator.clipboard.writeText(window.codigoPixGerado);
 
-  document.getElementById("toastPix").style.display = "inline-block";
-  document.getElementById("toastPix").classList.add("mostrar");
+  // ✅ mostra mensagem
+  let toast = document.getElementById("toastPix");
+
+  toast.style.display = "inline-block";
+  toast.classList.add("mostrar");
 
   setTimeout(() => {
-    document.getElementById("toastPix").classList.remove("mostrar");
-    document.getElementById("toastPix").style.display = "none";
+    toast.classList.remove("mostrar");
+    toast.style.display = "none";
   }, 2000);
 }
+
 // CURSOR
 const cursor = document.getElementById("cursor");
 
@@ -481,6 +505,6 @@ document.querySelectorAll("a, button, img").forEach(el => {
   el.addEventListener("mouseleave", () => cursor.style.display = "none");
 });
   </script>
-    <div id="toastPix">✔ Código Pix copiado</div>
+  <div id="toastPix" style="display:none;">✔ Código Pix copiado</div>
 </body>
 </html>
