@@ -464,10 +464,36 @@ function validar() {
 }
 
 function marcar(btn) {
-  btn.classList.toggle("comprado");
-  btn.innerText = btn.classList.contains("comprado")
-    ? "Comprado"
-    : "Disponível";
+  // perguntar nome
+  let nome = prompt("Digite seu nome para confirmar o presente:");
+
+  if (!nome) {
+    alert("Nome obrigatório!");
+    return;
+  }
+
+  // confirmar
+  let confirmar = confirm("Confirmar presente?");
+
+  if (!confirmar) return;
+
+  // mudar botão
+  btn.classList.add("comprado");
+  btn.innerText = "Presenteado";
+  btn.disabled = true;
+
+  // 🔥 salvar no navegador (log simples)
+  let item = btn.parentElement.parentElement.innerText;
+
+  let logs = JSON.parse(localStorage.getItem("presentes")) || [];
+
+  logs.push({
+    nome: nome,
+    item: item,
+    data: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("presentes", JSON.stringify(logs));
 }
 
 function copiarPix() {
